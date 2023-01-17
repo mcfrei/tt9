@@ -48,6 +48,7 @@
 	<string name="function_next_language_key">Next Language key</string>
 	<string name="function_next_mode_key">Input Mode key</string>
 	<string name="function_show_settings_key">Show Settings key</string>
+	<string name="function_voice_input_key">Voice Input key</string>
 	<string name="function_reset_keys_title">Restore Default Keys</string>
 	<string name="function_reset_keys_done">Default key settings restored.</string>
 

@@ -160,6 +160,7 @@ public class SettingsStore {
 		prefsEditor.putString(SectionKeymap.ITEM_NEXT_INPUT_MODE, String.valueOf(KeyEvent.KEYCODE_POUND));
 		prefsEditor.putString(SectionKeymap.ITEM_NEXT_LANGUAGE, String.valueOf(-KeyEvent.KEYCODE_POUND));
 		prefsEditor.putString(SectionKeymap.ITEM_SHOW_SETTINGS, String.valueOf(-KeyEvent.KEYCODE_STAR));
+		prefsEditor.putString(SectionKeymap.ITEM_VOICE_INPUT, String.valueOf(KeyEvent.KEYCODE_MENU));
 		prefsEditor.apply();
 	}
 
@@ -190,6 +191,8 @@ public class SettingsStore {
 	public int getKeyShowSettings() {
 		return getFunctionKey(SectionKeymap.ITEM_SHOW_SETTINGS);
 	}
+
+	public int getKeyVoiceInput() { return getFunctionKey(SectionKeymap.ITEM_VOICE_INPUT); }
 
 
 	/************* UI settings *************/

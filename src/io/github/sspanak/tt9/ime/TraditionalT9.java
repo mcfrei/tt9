@@ -313,6 +313,17 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
+	protected boolean onKeyVoiceInput() {
+		if (mEditing == EDITING_NOSHOW || mEditing == EDITING_DIALER) {
+			return false;
+		}
+
+		UI.toast(this, "Voice input not implemented");
+
+		return true;
+	}
+
+
 	protected boolean shouldTrackNumPress() {
 		return mInputMode.shouldTrackNumPress();
 	}

@@ -303,6 +303,10 @@ abstract class KeyPadHandler extends InputMethodService {
 			return onKeyShowSettings();
 		}
 
+		if (keyCode == settings.getKeyVoiceInput() * (hold ? -1 : 1)) {
+			return onKeyVoiceInput();
+		}
+
 		return false;
 	}
 
@@ -322,7 +326,8 @@ abstract class KeyPadHandler extends InputMethodService {
 			|| keyCode == settings.getKeyBackspace()
 			|| keyCode == settings.getKeyNextLanguage()
 			|| keyCode == settings.getKeyNextInputMode()
-			|| keyCode == settings.getKeyShowSettings();
+			|| keyCode == settings.getKeyShowSettings()
+			|| keyCode == settings.getKeyVoiceInput();
 	}
 
 
@@ -382,6 +387,7 @@ abstract class KeyPadHandler extends InputMethodService {
 	abstract protected boolean onKeyNextLanguage();
 	abstract protected boolean onKeyNextInputMode();
 	abstract protected boolean onKeyShowSettings();
+	abstract protected boolean onKeyVoiceInput();
 
 	// helpers
 	abstract protected void onInit();
