@@ -1,6 +1,7 @@
 package io.github.sspanak.tt9.ime;
 
 import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -9,11 +10,13 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 
 import io.github.sspanak.tt9.R;
+import io.github.sspanak.tt9.preferences.SettingsStore;
 import io.github.sspanak.tt9.ui.UI;
 
 class SoftKeyHandler implements View.OnTouchListener {
 	private static final int[] buttons = { R.id.main_left, R.id.main_mid, R.id.main_right };
 	private final TraditionalT9 tt9;
+	private final SettingsStore settings;
 	private View view = null;
 
 	private long lastBackspaceCall = 0;
@@ -21,13 +24,18 @@ class SoftKeyHandler implements View.OnTouchListener {
 	public SoftKeyHandler(TraditionalT9 tt9) {
 		this.tt9 = tt9;
 
+		settings = new SettingsStore(tt9.getApplicationContext());
 		getView();
 	}
 
 
 	View getView() {
 		if (view == null) {
-			view = View.inflate(tt9.getApplicationContext(), R.layout.mainview, null);
+			view = View.inflate(
+				tt9.getApplicationContext(),
+				settings.getShowSoftNumpad() ? R.layout.main_numpad : R.layout.main_small,
+				null
+			);
 
 			for (int buttonId : buttons) {
 				view.findViewById(buttonId).setOnTouchListener(this);
@@ -70,6 +78,10 @@ class SoftKeyHandler implements View.OnTouchListener {
 	 * https://stackoverflow.com/questions/72382886/system-applies-night-mode-to-views-added-in-service-type-application-overlay
 	 */
 	void setDarkTheme(boolean darkEnabled) {
+		if (settings.getShowSoftNumpad()) {
+			return;
+		}
+
 		if (view == null) {
 			return;
 		}
