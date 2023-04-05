@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
+import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 import io.github.sspanak.tt9.ui.UI;
@@ -30,6 +31,8 @@ class SoftKeyHandler implements View.OnTouchListener {
 
 
 	View getView() {
+		Logger.d("getView", "<================================");
+
 		if (view == null) {
 			view = View.inflate(
 				tt9.getApplicationContext(),

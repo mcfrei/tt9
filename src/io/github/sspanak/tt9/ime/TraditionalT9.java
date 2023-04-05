@@ -21,8 +21,8 @@ import io.github.sspanak.tt9.ime.helpers.TextField;
 import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
-import io.github.sspanak.tt9.ui.bottom.StatusBar;
-import io.github.sspanak.tt9.ui.bottom.SuggestionsBar;
+import io.github.sspanak.tt9.ui.tray.StatusBar;
+import io.github.sspanak.tt9.ui.tray.SuggestionsBar;
 import io.github.sspanak.tt9.ui.UI;
 
 public class TraditionalT9 extends KeyPadHandler {
