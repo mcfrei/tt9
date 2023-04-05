@@ -21,9 +21,9 @@ import io.github.sspanak.tt9.ime.helpers.TextField;
 import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
+import io.github.sspanak.tt9.ui.UI;
 import io.github.sspanak.tt9.ui.tray.StatusBar;
 import io.github.sspanak.tt9.ui.tray.SuggestionsBar;
-import io.github.sspanak.tt9.ui.UI;
 
 public class TraditionalT9 extends KeyPadHandler {
 	// internal settings/data
@@ -82,14 +82,7 @@ public class TraditionalT9 extends KeyPadHandler {
 
 		if (softKeyHandler == null) {
 			softKeyHandler = new SoftKeyHandler(this);
-		}
-
-		if (statusBar == null) {
-			statusBar = new StatusBar(softKeyHandler.getView());
-		}
-
-		if (suggestionBar == null) {
-			suggestionBar = new SuggestionsBar(settings, softKeyHandler.getView());
+			initTray();
 		}
 
 		loadSettings();
@@ -115,16 +108,27 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	private void initUi() {
-		statusBar
-			.setText(mInputMode != null ? mInputMode.toString() : "")
-			.setDarkTheme(settings.getDarkTheme());
+	private void initTray() {
+		setInputView(softKeyHandler.getView());
+		statusBar = new StatusBar(softKeyHandler.getView());
+		suggestionBar = new SuggestionsBar(settings, softKeyHandler.getView());
+	}
 
-		clearSuggestions();
-		suggestionBar.setDarkTheme(settings.getDarkTheme());
 
+	private void setDarkTheme() {
 		softKeyHandler.setDarkTheme(settings.getDarkTheme());
-		softKeyHandler.setSoftKeysVisibility(settings.getShowSoftKeys());
+		statusBar.setDarkTheme(settings.getDarkTheme());
+		suggestionBar.setDarkTheme(settings.getDarkTheme());
+	}
+
+
+	private void initUi() {
+		if (softKeyHandler.createView()) {
+			initTray();
+		}
+		clearSuggestions();
+		statusBar.setText(mInputMode != null ? mInputMode.toString() : "");
+		setDarkTheme();
 		softKeyHandler.show();
 	}
 
@@ -684,6 +688,7 @@ public class TraditionalT9 extends KeyPadHandler {
 	 * Generates the actual UI of TT9.
 	 */
 	protected View createSoftKeyView() {
+		softKeyHandler.createView();
 		return softKeyHandler.getView();
 	}
 
