@@ -37,8 +37,8 @@
 		android:baselineAligned="true"
 		android:orientation="horizontal">
 
-		<Button
-			android:id="@+id/main_left"
+		<io.github.sspanak.tt9.ui.main.SoftKey
+			android:id="@+id/soft_key_settings"
 			style="@android:style/Widget.Holo.Button.Borderless"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
@@ -55,8 +55,8 @@
 			style="@style/hSeparator"
 			android:background="@drawable/button_separator_dark" />
 
-		<Button
-			android:id="@+id/main_mid"
+		<io.github.sspanak.tt9.ui.main.SoftKey
+			android:id="@+id/soft_key_ok"
 			style="@android:style/Widget.Holo.Button.Borderless"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
@@ -72,8 +72,8 @@
 			android:background="@drawable/button_separator_dark"
 			style="@style/hSeparator" />
 
-		<Button
-			android:id="@+id/main_right"
+		<io.github.sspanak.tt9.ui.main.SoftBackspaceKey
+			android:id="@+id/soft_key_backspace"
 			style="@android:style/Widget.Holo.Button.Borderless"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
