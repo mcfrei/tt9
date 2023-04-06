@@ -6,8 +6,8 @@ import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
-public class MainNumpadView extends BaseMainView {
-	public MainNumpadView(TraditionalT9 tt9, SettingsStore settings) {
+class MainLayoutNumpad extends BaseMainLayout {
+	public MainLayoutNumpad(TraditionalT9 tt9, SettingsStore settings) {
 		super(tt9, settings, R.layout.main_numpad);
 	}
 

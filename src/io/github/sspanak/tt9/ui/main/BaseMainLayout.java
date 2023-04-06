@@ -5,14 +5,14 @@ import android.view.View;
 import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
-abstract public class BaseMainView {
+abstract class BaseMainLayout {
 	protected SettingsStore settings;
 	protected TraditionalT9 tt9;
 	private final int xml;
 
 	protected View view = null;
 
-	public BaseMainView(TraditionalT9 tt9, SettingsStore settings, int xml) {
+	public BaseMainLayout(TraditionalT9 tt9, SettingsStore settings, int xml) {
 		this.tt9 = tt9;
 		this.settings = settings;
 		this.xml = xml;

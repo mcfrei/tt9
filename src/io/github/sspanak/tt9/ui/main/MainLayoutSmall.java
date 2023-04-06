@@ -13,12 +13,12 @@ import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 import io.github.sspanak.tt9.ui.UI;
 
-public class MainSmallView extends BaseMainView implements View.OnTouchListener {
+class MainLayoutSmall extends BaseMainLayout implements View.OnTouchListener {
 	private final int[] buttons = { R.id.main_left, R.id.main_mid, R.id.main_right };
 	private long lastBackspaceCall = 0;
 
 
-	public MainSmallView(TraditionalT9 tt9, SettingsStore settings) {
+	public MainLayoutSmall(TraditionalT9 tt9, SettingsStore settings) {
 		super(tt9, settings, R.layout.main_small);
 	}
 

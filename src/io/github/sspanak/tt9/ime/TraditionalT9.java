@@ -22,6 +22,7 @@ import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
 import io.github.sspanak.tt9.ui.UI;
+import io.github.sspanak.tt9.ui.main.MainView;
 import io.github.sspanak.tt9.ui.tray.StatusBar;
 import io.github.sspanak.tt9.ui.tray.SuggestionsBar;
 
@@ -40,7 +41,7 @@ public class TraditionalT9 extends KeyPadHandler {
 	protected Language mLanguage;
 
 	// soft key view
-	private SoftKeyHandler softKeyHandler = null;
+	private MainView mainView = null;
 	private StatusBar statusBar = null;
 	private SuggestionsBar suggestionBar = null;
 
@@ -80,8 +81,8 @@ public class TraditionalT9 extends KeyPadHandler {
 		DictionaryDb.init(this);
 		DictionaryDb.normalizeWordFrequencies(settings);
 
-		if (softKeyHandler == null) {
-			softKeyHandler = new SoftKeyHandler(this);
+		if (mainView == null) {
+			mainView = new MainView(this, settings);
 			initTray();
 		}
 
@@ -109,27 +110,27 @@ public class TraditionalT9 extends KeyPadHandler {
 
 
 	private void initTray() {
-		setInputView(softKeyHandler.getView());
-		statusBar = new StatusBar(softKeyHandler.getView());
-		suggestionBar = new SuggestionsBar(settings, softKeyHandler.getView());
+		setInputView(mainView.getView());
+		statusBar = new StatusBar(mainView.getView());
+		suggestionBar = new SuggestionsBar(settings, mainView.getView());
 	}
 
 
 	private void setDarkTheme() {
-		softKeyHandler.setDarkTheme(settings.getDarkTheme());
+		mainView.setDarkTheme(settings.getDarkTheme());
 		statusBar.setDarkTheme(settings.getDarkTheme());
 		suggestionBar.setDarkTheme(settings.getDarkTheme());
 	}
 
 
 	private void initUi() {
-		if (softKeyHandler.createView()) {
+		if (mainView.createView()) {
 			initTray();
 		}
 		clearSuggestions();
 		statusBar.setText(mInputMode != null ? mInputMode.toString() : "");
 		setDarkTheme();
-		softKeyHandler.show();
+		mainView.show();
 	}
 
 
@@ -168,7 +169,7 @@ public class TraditionalT9 extends KeyPadHandler {
 		onFinishTyping();
 		clearSuggestions();
 
-		softKeyHandler.hide();
+		mainView.hide();
 	}
 
 
@@ -688,8 +689,8 @@ public class TraditionalT9 extends KeyPadHandler {
 	 * Generates the actual UI of TT9.
 	 */
 	protected View createSoftKeyView() {
-		softKeyHandler.createView();
-		return softKeyHandler.getView();
+		mainView.createView();
+		return mainView.getView();
 	}
 
 
