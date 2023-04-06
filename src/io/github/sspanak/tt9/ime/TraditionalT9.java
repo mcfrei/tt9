@@ -112,7 +112,7 @@ public class TraditionalT9 extends KeyPadHandler {
 	private void initTray() {
 		setInputView(mainView.getView());
 		statusBar = new StatusBar(mainView.getView());
-		suggestionBar = new SuggestionsBar(settings, mainView.getView());
+		suggestionBar = new SuggestionsBar(this, settings, mainView.getView());
 	}
 
 

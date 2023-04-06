@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.sspanak.tt9.R;
+import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
 public class SuggestionsBar {
@@ -25,13 +26,15 @@ public class SuggestionsBar {
 
 	private final RecyclerView mView;
 	private final SettingsStore settings;
+	private final TraditionalT9 tt9;
 	private SuggestionsAdapter mSuggestionsAdapter;
 
 
-	public SuggestionsBar(SettingsStore settings, View mainView) {
+	public SuggestionsBar(TraditionalT9 tt9, SettingsStore settings, View mainView) {
 		super();
 
 		this.settings = settings;
+		this.tt9 = tt9;
 
 		mView = mainView.findViewById(R.id.suggestions_bar);
 		mView.setLayoutManager(new LinearLayoutManager(mainView.getContext(), RecyclerView.HORIZONTAL,false));
@@ -60,6 +63,7 @@ public class SuggestionsBar {
 	private void initDataAdapter(Context context) {
 		mSuggestionsAdapter = new SuggestionsAdapter(
 			context,
+			this,
 			R.layout.suggestion_list_view,
 			R.id.suggestion_list_item,
 			suggestions
@@ -212,5 +216,15 @@ public class SuggestionsBar {
 		}
 
 		setBackground(newSuggestions);
+	}
+
+
+	/**
+	 * onItemClick
+	 * Passes through suggestion selected using the touchscreen.
+	 */
+	public void onItemClick(int position) {
+		selectedIndex = position;
+		tt9.onOK();
 	}
 }
