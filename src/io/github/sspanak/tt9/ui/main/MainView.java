@@ -2,7 +2,6 @@ package io.github.sspanak.tt9.ui.main;
 
 import android.view.View;
 
-import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
@@ -19,13 +18,11 @@ public class MainView {
 	}
 
 	public boolean createView() {
-		int currentView = main != null ? main.getId() : -1;
-
-		if (this.settings.getShowSoftNumpad() && currentView != R.id.main_numpad) {
+		if (this.settings.getShowSoftNumpad() && !(main instanceof MainLayoutNumpad)) {
 			main = new MainLayoutNumpad(tt9, this.settings);
 			main.render();
 			return true;
-		} else if (currentView != R.id.main_small) {
+		} else if (!this.settings.getShowSoftNumpad() && !(main instanceof MainLayoutSmall)) {
 			main = new MainLayoutSmall(tt9, this.settings);
 			main.render();
 			return true;

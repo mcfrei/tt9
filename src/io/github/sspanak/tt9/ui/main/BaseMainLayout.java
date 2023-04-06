@@ -67,10 +67,6 @@ abstract class BaseMainLayout {
 		}
 	}
 
-	public int getId() {
-		return view != null ? view.getId() : -1;
-	}
-
 	protected ArrayList<SoftKey> getKeys() {
 		if (view != null) {
 			final ViewGroup softKeyContainer = view.findViewById(R.id.main_soft_keys);
