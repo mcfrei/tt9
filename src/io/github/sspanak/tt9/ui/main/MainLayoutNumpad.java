@@ -1,6 +1,11 @@
 package io.github.sspanak.tt9.ui.main;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.core.content.ContextCompat;
+
+import java.util.ArrayList;
 
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
@@ -12,20 +17,41 @@ class MainLayoutNumpad extends BaseMainLayout {
 	}
 
 	@Override
-	public void render() {
-		getView();
-	}
-
-	@Override
-	final public void setDarkTheme(boolean darkEnabled) {
-		if (view == null) {
-			return;
-		}
-
+	public void setDarkTheme(boolean darkEnabled) {
 		// background
 		view.setBackground(ContextCompat.getDrawable(
 			view.getContext(),
 			darkEnabled ? R.color.dark_candidate_background : R.color.candidate_background
 		));
+
+		// text
+		for (SoftKey key : getKeys()) {
+			key.setDarkTheme(darkEnabled);
+		}
+	}
+
+	@Override
+	public void render() {
+		getView();
+		enableClickHandlers();
+	}
+
+	@Override
+	protected ArrayList<SoftKey> getKeys() {
+		if (keys != null && keys.size() > 0) {
+			return keys;
+		}
+
+		ViewGroup table = view.findViewById(R.id.main_soft_keys);
+		int tableRowsCount = table.getChildCount();
+
+		for (int rowId = 0; rowId < tableRowsCount; rowId++) {
+			View row = table.getChildAt(rowId);
+			if (row instanceof ViewGroup) {
+				keys.addAll(getKeysFromContainer((ViewGroup) row));
+			}
+		}
+
+		return keys;
 	}
 }

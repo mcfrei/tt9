@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
@@ -15,7 +14,7 @@ abstract class BaseMainLayout {
 	private final int xml;
 
 	protected View view = null;
-	private final ArrayList<SoftKey> keys = new ArrayList<>();
+	protected ArrayList<SoftKey> keys = new ArrayList<>();
 
 	public BaseMainLayout(TraditionalT9 tt9, SettingsStore settings, int xml) {
 		this.tt9 = tt9;
@@ -44,12 +43,16 @@ abstract class BaseMainLayout {
 	abstract public void render();
 
 
+	/**
+	 * getKeys
+	 * Returns a list of all the usable Soft Keys.
+	 */
+	abstract protected ArrayList<SoftKey> getKeys();
+
+
 	public View getView() {
 		if (view == null) {
 			view = View.inflate(tt9.getApplicationContext(), xml, null);
-			for (SoftKey key : getKeys()) {
-				key.setTT9(tt9);
-			}
 		}
 
 		return view;
@@ -67,19 +70,25 @@ abstract class BaseMainLayout {
 		}
 	}
 
-	protected ArrayList<SoftKey> getKeys() {
-		if (view != null) {
-			final ViewGroup softKeyContainer = view.findViewById(R.id.main_soft_keys);
-			final int childrenCount = softKeyContainer != null ? softKeyContainer.getChildCount() : 0;
+	public void enableClickHandlers() {
+		for (SoftKey key : getKeys()) {
+			key.setTT9(tt9);
+		}
+	}
 
-			for (int i = 0; i < childrenCount; i++) {
-				View child = softKeyContainer.getChildAt(i);
-				if (child instanceof SoftKey) {
-					keys.add((SoftKey) child);
-				}
+
+
+	protected ArrayList<SoftKey> getKeysFromContainer(ViewGroup container) {
+		ArrayList<SoftKey> keyList = new ArrayList<>();
+		final int childrenCount = container != null ? container.getChildCount() : 0;
+
+		for (int i = 0; i < childrenCount; i++) {
+			View child = container.getChildAt(i);
+			if (child instanceof SoftKey) {
+				keys.add((SoftKey) child);
 			}
 		}
 
-		return keys;
+		return keyList;
 	}
 }

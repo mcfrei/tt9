@@ -5,6 +5,8 @@ import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
 import io.github.sspanak.tt9.preferences.SettingsStore;
@@ -14,16 +16,19 @@ class MainLayoutSmall extends BaseMainLayout {
 		super(tt9, settings, R.layout.main_small);
 	}
 
-	private void setSoftKeysVisibility(boolean visible) {
+	private void setSoftKeysVisibility() {
 		if (view != null) {
-			view.findViewById(R.id.main_soft_keys).setVisibility(visible ? LinearLayout.VISIBLE : LinearLayout.GONE);
+			view.findViewById(R.id.main_soft_keys).setVisibility(settings.getShowSoftKeys() ? LinearLayout.VISIBLE : LinearLayout.GONE);
 		}
 	}
 
 	@Override
 	public void render() {
 		getView();
-		setSoftKeysVisibility(settings.getShowSoftKeys());
+		if (settings.getShowSoftKeys()) {
+			setSoftKeysVisibility();
+			enableClickHandlers();
+		}
 	}
 
 	@Override
@@ -51,5 +56,14 @@ class MainLayoutSmall extends BaseMainLayout {
 
 		view.findViewById(R.id.main_separator_left).setBackground(separatorColor);
 		view.findViewById(R.id.main_separator_right).setBackground(separatorColor);
+	}
+
+
+	@Override
+	protected ArrayList<SoftKey> getKeys() {
+		if (view != null && (keys == null || keys.size() == 0)) {
+			keys = getKeysFromContainer(view.findViewById(R.id.main_soft_keys));
+		}
+		return keys;
 	}
 }
