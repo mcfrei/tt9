@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat;
 import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
-import io.github.sspanak.tt9.ui.UI;
 
 public class SoftKey extends androidx.appcompat.widget.AppCompatButton implements View.OnTouchListener {
 	protected TraditionalT9 tt9;
@@ -57,18 +56,18 @@ public class SoftKey extends androidx.appcompat.widget.AppCompatButton implement
 		return false;
 	}
 
-	protected boolean handlePress(int buttonId) {
+	protected boolean handlePress(int keyId) {
 		if (tt9 == null) {
 			Logger.w(getClass().getCanonicalName(), "Traditional T9 handler is not set. Ignoring key press.");
 			return false;
 		}
 
-
-		if (buttonId == R.id.soft_key_ok) return tt9.onOK();
-		if (buttonId == R.id.soft_key_settings) {
-			UI.showSettingsScreen(tt9);
-			return true;
-		}
+		if (keyId == R.id.soft_key_input_mode) return tt9.onKeyNextInputMode();
+		if (keyId == R.id.soft_key_language) return tt9.onKeyNextLanguage();
+		if (keyId == R.id.soft_key_ok) return tt9.onOK();
+		if (keyId == R.id.soft_key_pound) return tt9.onPound();
+		if (keyId == R.id.soft_key_settings) return tt9.onKeyShowSettings();
+		if (keyId == R.id.soft_key_star) return tt9.onStar();
 
 		return false;
 	}

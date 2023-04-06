@@ -320,19 +320,19 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	protected boolean onPound() {
+	public boolean onPound() {
 		textField.setText("#");
 		return true;
 	}
 
 
-	protected boolean onStar() {
+	public boolean onStar() {
 		textField.setText("*");
 		return true;
 	}
 
 
-	protected boolean onKeyAddWord() {
+	public boolean onKeyAddWord() {
 		if (mEditing == EDITING_STRICT_NUMERIC || mEditing == EDITING_DIALER) {
 			return false;
 		}
@@ -342,7 +342,7 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	protected boolean onKeyNextLanguage() {
+	public boolean onKeyNextLanguage() {
 		if (nextLang()) {
 			commitCurrentSuggestion(false);
 			mInputMode.changeLanguage(mLanguage);
@@ -359,14 +359,14 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	protected boolean onKeyNextInputMode() {
+	public boolean onKeyNextInputMode() {
 		nextInputMode();
 		forceShowWindowIfHidden();
 		return (mEditing != EDITING_STRICT_NUMERIC && mEditing != EDITING_DIALER);
 	}
 
 
-	protected boolean onKeyShowSettings() {
+	public boolean onKeyShowSettings() {
 		if (mEditing == EDITING_DIALER) {
 			return false;
 		}
