@@ -31,7 +31,7 @@ abstract class BaseMainLayout {
 	 * system context and theme.
 	 *
 	 * More info:
-	 * https://stackoverflow.com/questions/72382886/system-applies-night-mode-to-views-added-in-service-type-application-overlay
+	 * <a href="https://stackoverflow.com/questions/72382886/system-applies-night-mode-to-views-added-in-service-type-application-overlay">...</a>
 	 */
 	abstract public void setDarkTheme(boolean yes);
 
@@ -85,7 +85,7 @@ abstract class BaseMainLayout {
 		for (int i = 0; i < childrenCount; i++) {
 			View child = container.getChildAt(i);
 			if (child instanceof SoftKey) {
-				keys.add((SoftKey) child);
+				keyList.add((SoftKey) child);
 			}
 		}
 

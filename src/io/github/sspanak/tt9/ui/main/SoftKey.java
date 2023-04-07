@@ -62,6 +62,7 @@ public class SoftKey extends androidx.appcompat.widget.AppCompatButton implement
 			return false;
 		}
 
+		if (keyId == R.id.soft_key_add_word) return tt9.onKeyAddWord();
 		if (keyId == R.id.soft_key_input_mode) return tt9.onKeyNextInputMode();
 		if (keyId == R.id.soft_key_language) return tt9.onKeyNextLanguage();
 		if (keyId == R.id.soft_key_ok) return tt9.onOK();

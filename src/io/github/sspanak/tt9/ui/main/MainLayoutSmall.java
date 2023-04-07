@@ -25,9 +25,9 @@ class MainLayoutSmall extends BaseMainLayout {
 	@Override
 	public void render() {
 		getView();
+		enableClickHandlers();
 		if (settings.getShowSoftKeys()) {
 			setSoftKeysVisibility();
-			enableClickHandlers();
 		}
 	}
 
