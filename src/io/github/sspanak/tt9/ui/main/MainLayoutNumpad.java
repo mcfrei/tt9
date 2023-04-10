@@ -18,11 +18,20 @@ class MainLayoutNumpad extends BaseMainLayout {
 
 	@Override
 	public void setDarkTheme(boolean darkEnabled) {
-		// background
+		// tray background
 		view.setBackground(ContextCompat.getDrawable(
 			view.getContext(),
 			darkEnabled ? R.color.dark_candidate_background : R.color.candidate_background
 		));
+
+		// keys background
+		View numpad = view.findViewById(R.id.main_numpad);
+		if (numpad != null) {
+			numpad.setBackground(ContextCompat.getDrawable(
+				view.getContext(),
+				darkEnabled ? R.color.dark_numpad_background : R.color.numpad_background
+			));
+		}
 
 		// text
 		for (SoftKey key : getKeys()) {
