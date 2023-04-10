@@ -8,7 +8,7 @@
 
 	<FrameLayout
 		android:layout_width="fill_parent"
-		android:layout_height="@dimen/numpad_candidate_list_height">
+		android:layout_height="@dimen/numpad_candidate_height">
 
 		<TextView
 			android:id="@+id/status_bar"

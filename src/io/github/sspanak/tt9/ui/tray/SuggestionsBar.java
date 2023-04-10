@@ -64,7 +64,7 @@ public class SuggestionsBar {
 		mSuggestionsAdapter = new SuggestionsAdapter(
 			context,
 			this,
-			R.layout.suggestion_list_view,
+			settings.getShowSoftNumpad() ? R.layout.suggestion_list_numpad : R.layout.suggestion_list,
 			R.id.suggestion_list_item,
 			suggestions
 		);
