@@ -8,7 +8,7 @@
 
 	<FrameLayout
 		android:layout_width="fill_parent"
-		android:layout_height="@dimen/candidate_list_height">
+		android:layout_height="@dimen/numpad_candidate_list_height">
 
 		<TextView
 			android:id="@+id/status_bar"
@@ -20,25 +20,27 @@
 
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/suggestions_bar"
-			android:gravity="center_vertical"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:fadingEdge="horizontal"
+			android:gravity="center"
 			android:orientation="horizontal"
 			android:scrollbars="none" />
 
 	</FrameLayout>
 
 
-	<TableLayout
+	<LinearLayout
 		android:id="@+id/main_soft_keys"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:paddingBottom="@dimen/numpad_padding_bottom">
 
-		<TableRow
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
+			android:layout_height="@dimen/soft_key_height"
+			tools:ignore="HardcodedText">
 
 			<io.github.sspanak.tt9.ui.main.SoftKey
 				android:id="@+id/soft_key_settings"
@@ -46,36 +48,58 @@
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:clickable="true"
-				android:focusable="true"
-				android:longClickable="true"
 				android:text="⚙"
-				android:textSize="@dimen/soft_key_icon_size"
-				tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
+				android:textSize="@dimen/soft_key_icon_size" />
+
+			<io.github.sspanak.tt9.ui.main.SoftKey
+				android:id="@+id/soft_key_add_word"
+				style="@android:style/Widget.Holo.Button.Borderless"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="+WORD" />
+
+			<View
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="3" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/numpad_key_height"
+			tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
+
+			<View
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				android:textAlignment="center" />
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
 				android:id="@+id/soft_key_1"
-				android:text="1"
+				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:text="1" />
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
 				android:id="@+id/soft_key_2"
-				android:text="2"
+				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:text="2" />
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
 				android:id="@+id/soft_key_3"
-				android:text="3"
+				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:text="3" />
 
 			<io.github.sspanak.tt9.ui.main.SoftBackspaceKey
 				android:id="@+id/soft_key_backspace"
@@ -83,64 +107,57 @@
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:clickable="true"
-				android:focusable="true"
-				android:longClickable="true"
 				android:text="⌫"
 				android:textSize="@dimen/soft_key_icon_size"
-				tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
+				tools:ignore="HardcodedText" />
 
-		</TableRow>
+		</LinearLayout>
 
-		<TableRow
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
+			android:layout_height="@dimen/numpad_key_height"
+			tools:ignore="HardcodedText">
 
-			<io.github.sspanak.tt9.ui.main.SoftKey
-				android:id="@+id/soft_key_add_word"
-				android:text="+WORD"
+			<View
 				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:layout_height="0dp"
+				android:layout_weight="1" />
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
 				android:id="@+id/soft_key_4"
-				android:text="4"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
-
-			<io.github.sspanak.tt9.ui.main.SoftNumberKey
-				android:id="@+id/soft_key_5"
-				android:text="5"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
-
-			<io.github.sspanak.tt9.ui.main.SoftNumberKey
-				android:id="@+id/soft_key_6"
-				android:text="6"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
-
-			<TextView
 				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:textAlignment="center" />
-		</TableRow>
+				android:text="4" />
 
-		<TableRow
+			<io.github.sspanak.tt9.ui.main.SoftNumberKey
+				android:id="@+id/soft_key_5"
+				style="@android:style/Widget.Holo.Button.Borderless"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="5" />
+
+			<io.github.sspanak.tt9.ui.main.SoftNumberKey
+				android:id="@+id/soft_key_6"
+				style="@android:style/Widget.Holo.Button.Borderless"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="6" />
+
+			<View
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1" />
+
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
+			android:layout_height="@dimen/numpad_key_height"
+			tools:ignore="HardcodedText">
 
 			<io.github.sspanak.tt9.ui.main.SoftKey
 				android:id="@+id/soft_key_input_mode"
@@ -152,43 +169,40 @@
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
 				android:id="@+id/soft_key_7"
-				android:text="7"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
-
-			<io.github.sspanak.tt9.ui.main.SoftNumberKey
-				android:id="@+id/soft_key_8"
-				android:text="8"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
-
-			<io.github.sspanak.tt9.ui.main.SoftNumberKey
-				android:id="@+id/soft_key_9"
-				android:text="9"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
-
-			<TextView
 				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:text=""
-				android:textAlignment="center" />
+				android:text="7" />
 
-		</TableRow>
+			<io.github.sspanak.tt9.ui.main.SoftNumberKey
+				android:id="@+id/soft_key_8"
+				style="@android:style/Widget.Holo.Button.Borderless"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="8" />
+
+			<io.github.sspanak.tt9.ui.main.SoftNumberKey
+				android:id="@+id/soft_key_9"
+				style="@android:style/Widget.Holo.Button.Borderless"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="9" />
+
+			<View
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1" />
+
+		</LinearLayout>
 
 
-		<TableRow
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
+			android:layout_height="@dimen/numpad_key_height"
+			tools:ignore="HardcodedText">
 
 			<io.github.sspanak.tt9.ui.main.SoftKey
 				android:id="@+id/soft_key_language"
@@ -198,31 +212,31 @@
 				android:layout_weight="1"
 				android:text="🌐"
 				android:textSize="@dimen/soft_key_icon_size"
-				tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
+				tools:ignore="HardcodedText" />
 
 			<io.github.sspanak.tt9.ui.main.SoftKey
 				android:id="@+id/soft_key_star"
-				android:text="✱"
+				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:text="✱" />
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
 				android:id="@+id/soft_key_0"
-				android:text="0"
+				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:text="0" />
 
 			<io.github.sspanak.tt9.ui.main.SoftKey
 				android:id="@+id/soft_key_pound"
-				android:text="#"
+				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				style="@android:style/Widget.Holo.Button.Borderless" />
+				android:text="#" />
 
 			<io.github.sspanak.tt9.ui.main.SoftKey
 				android:id="@+id/soft_key_ok"
@@ -230,12 +244,10 @@
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:clickable="true"
-				android:focusable="true"
-				android:longClickable="true"
 				android:text="@android:string/ok"
-				tools:ignore="ButtonOrder,KeyboardInaccessibleWidget" />
-		</TableRow>
-	</TableLayout>
+				tools:ignore="ButtonOrder" />
+
+		</LinearLayout>
+	</LinearLayout>
 
 </LinearLayout>
