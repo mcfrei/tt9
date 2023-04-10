@@ -35,7 +35,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/soft_key_height"
 		android:baselineAligned="true"
-		android:orientation="horizontal">
+		android:orientation="horizontal"
+		tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
 
 		<io.github.sspanak.tt9.ui.main.SoftKey
 			android:id="@+id/soft_key_settings"
@@ -43,12 +44,9 @@
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="3"
-			android:clickable="true"
 			android:focusable="false"
-			android:longClickable="true"
 			android:text="⚙"
-			android:textSize="@dimen/soft_key_icon_size"
-			tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
+			android:textSize="@dimen/soft_key_icon_size" />
 
 		<View
 			android:id="@+id/main_separator_left"
@@ -61,11 +59,8 @@
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="5"
-			android:clickable="true"
 			android:focusable="false"
-			android:longClickable="true"
-			android:text="@android:string/ok"
-			tools:ignore="ButtonOrder,KeyboardInaccessibleWidget" />
+			android:text="@android:string/ok" />
 
 		<View
 			android:id="@+id/main_separator_right"
@@ -78,12 +73,9 @@
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="3"
-			android:clickable="true"
 			android:focusable="false"
-			android:longClickable="true"
 			android:text="⌫"
-			android:textSize="@dimen/soft_key_icon_size"
-			tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
+			android:textSize="@dimen/soft_key_icon_size" />
 
 	</LinearLayout>
 </LinearLayout>
