@@ -309,4 +309,26 @@ public class DictionaryDb {
 			}
 		}.start();
 	}
+
+		public static void getMax(Handler handler) {
+		new Thread() {
+			@Override
+			public void run() {
+				long start = System.currentTimeMillis();
+				List<Word> exactMatches = getInstance().wordsDao().getAll(403177);
+				Logger.d(
+					"db.getSuggestionsExact",
+					"Exact matches: " + exactMatches.size() + ". Time: " + (System.currentTimeMillis() - start) + " ms"
+				);
+
+			ArrayList<String> suggestions = new ArrayList<>();
+			for (Word w : exactMatches) {
+//				Logger.d("db.getSuggestions", "exact match: " + w.word + " | priority: " + w.frequency);
+				suggestions.add(w.word);
+			}
+
+				sendSuggestions(handler, suggestions);
+			}
+		}.start();
+	}
 }

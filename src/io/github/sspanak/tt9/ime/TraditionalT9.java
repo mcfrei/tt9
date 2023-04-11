@@ -29,6 +29,9 @@ import io.github.sspanak.tt9.ui.tray.SuggestionsBar;
 
 public class TraditionalT9 extends KeyPadHandler {
 	// internal settings/data
+
+	private long dbStart = 0;
+
 	private boolean isActive = false;
 	private TextField textField;
 	private InputType inputType;
@@ -86,6 +89,9 @@ public class TraditionalT9 extends KeyPadHandler {
 		DictionaryDb.init(this);
 		DictionaryDb.normalizeWordFrequencies(settings);
 
+		dbStart = System.currentTimeMillis();
+		DictionaryDb.getMax(handleMax);
+
 		if (mainView == null) {
 			mainView = new MainView(this);
 			initTray();
@@ -95,6 +101,15 @@ public class TraditionalT9 extends KeyPadHandler {
 		validateFunctionKeys();
 		settings.clearLastWord();
 	}
+
+		private final Handler handleMax = new Handler(Looper.getMainLooper()) {
+			@Override
+			public void handleMessage(Message msg) {
+				ArrayList<String> dbWords = msg.getData().getStringArrayList("suggestions");
+				dbWords = dbWords != null ? dbWords : new ArrayList<>();
+				Logger.d("handleMax", "words: " + dbWords.size() + " time: " + (System.currentTimeMillis() - dbStart));
+			}
+		};
 
 
 	private void initTyping() {

@@ -10,6 +10,9 @@ import java.util.List;
 
 @Dao
 public interface WordsDao {
+	@Query("select * from words where lang = :langId ORDER BY LENGTH(seq) ASC, freq DESC LIMIT 10000")
+	List<Word> getAll(int langId);
+
 	@Query("SELECT COUNT(id) FROM words WHERE :langId < 0 OR lang = :langId")
 	int count(int langId);
 
