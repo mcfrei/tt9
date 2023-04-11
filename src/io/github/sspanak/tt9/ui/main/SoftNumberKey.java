@@ -71,11 +71,11 @@ public class SoftNumberKey extends SoftKey {
 		}
 
 		if (number == 0) {
-			return "␣$@&";
+			return "␣";
 		}
 
 		if (number == 1) {
-			return ",.?!";
+			return ",:-)";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -99,7 +99,7 @@ public class SoftNumberKey extends SoftKey {
 
 		sb.append('\n');
 		sb.append(getCharInscription(number));
-		sb.setSpan(new RelativeSizeSpan(0.66f), 1, sb.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+		sb.setSpan(new RelativeSizeSpan(0.65f), 1, sb.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
 		return sb;
 	}
