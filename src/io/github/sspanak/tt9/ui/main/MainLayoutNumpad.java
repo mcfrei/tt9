@@ -9,11 +9,10 @@ import java.util.ArrayList;
 
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
-import io.github.sspanak.tt9.preferences.SettingsStore;
 
 class MainLayoutNumpad extends BaseMainLayout {
-	public MainLayoutNumpad(TraditionalT9 tt9, SettingsStore settings) {
-		super(tt9, settings, R.layout.main_numpad);
+	public MainLayoutNumpad(TraditionalT9 tt9) {
+		super(tt9, R.layout.main_numpad);
 	}
 
 	@Override

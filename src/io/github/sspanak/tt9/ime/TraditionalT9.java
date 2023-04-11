@@ -21,6 +21,7 @@ import io.github.sspanak.tt9.ime.helpers.TextField;
 import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
+import io.github.sspanak.tt9.preferences.SettingsStore;
 import io.github.sspanak.tt9.ui.UI;
 import io.github.sspanak.tt9.ui.main.MainView;
 import io.github.sspanak.tt9.ui.tray.StatusBar;
@@ -49,6 +50,10 @@ public class TraditionalT9 extends KeyPadHandler {
 	private static TraditionalT9 self;
 	public static Context getMainContext() {
 		return self.getApplicationContext();
+	}
+
+	public SettingsStore getSettings() {
+		return settings;
 	}
 
 
@@ -82,7 +87,7 @@ public class TraditionalT9 extends KeyPadHandler {
 		DictionaryDb.normalizeWordFrequencies(settings);
 
 		if (mainView == null) {
-			mainView = new MainView(this, settings);
+			mainView = new MainView(this);
 			initTray();
 		}
 
@@ -112,7 +117,7 @@ public class TraditionalT9 extends KeyPadHandler {
 	private void initTray() {
 		setInputView(mainView.getView());
 		statusBar = new StatusBar(mainView.getView());
-		suggestionBar = new SuggestionsBar(this, settings, mainView.getView());
+		suggestionBar = new SuggestionsBar(this, mainView.getView());
 	}
 
 

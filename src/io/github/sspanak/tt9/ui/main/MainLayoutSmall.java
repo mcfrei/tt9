@@ -9,16 +9,15 @@ import java.util.ArrayList;
 
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
-import io.github.sspanak.tt9.preferences.SettingsStore;
 
 class MainLayoutSmall extends BaseMainLayout {
-	public MainLayoutSmall(TraditionalT9 tt9, SettingsStore settings) {
-		super(tt9, settings, R.layout.main_small);
+	public MainLayoutSmall(TraditionalT9 tt9) {
+		super(tt9, R.layout.main_small);
 	}
 
 	private void setSoftKeysVisibility() {
 		if (view != null) {
-			view.findViewById(R.id.main_soft_keys).setVisibility(settings.getShowSoftKeys() ? LinearLayout.VISIBLE : LinearLayout.GONE);
+			view.findViewById(R.id.main_soft_keys).setVisibility(tt9.getSettings().getShowSoftKeys() ? LinearLayout.VISIBLE : LinearLayout.GONE);
 		}
 	}
 
@@ -26,7 +25,7 @@ class MainLayoutSmall extends BaseMainLayout {
 	public void render() {
 		getView();
 		enableClickHandlers();
-		if (settings.getShowSoftKeys()) {
+		if (tt9.getSettings().getShowSoftKeys()) {
 			setSoftKeysVisibility();
 		}
 	}

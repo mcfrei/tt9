@@ -6,19 +6,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import io.github.sspanak.tt9.ime.TraditionalT9;
-import io.github.sspanak.tt9.preferences.SettingsStore;
 
 abstract class BaseMainLayout {
-	protected SettingsStore settings;
 	protected TraditionalT9 tt9;
 	private final int xml;
 
 	protected View view = null;
 	protected ArrayList<SoftKey> keys = new ArrayList<>();
 
-	public BaseMainLayout(TraditionalT9 tt9, SettingsStore settings, int xml) {
+	public BaseMainLayout(TraditionalT9 tt9, int xml) {
 		this.tt9 = tt9;
-		this.settings = settings;
 		this.xml = xml;
 	}
 
