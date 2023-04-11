@@ -283,7 +283,7 @@ public class TraditionalT9 extends KeyPadHandler {
 
 		String currentWord = getComposingText();
 
-		// Automatically accept the current word, when the next one is a space or whatnot,
+		// Automatically accept the current word, when the next one is a space or punctuation,
 		// instead of requiring "OK" before that.
 		if (mInputMode.shouldAcceptCurrentSuggestion(key, hold, repeat > 0)) {
 			mInputMode.onAcceptSuggestion(currentWord);
@@ -307,6 +307,7 @@ public class TraditionalT9 extends KeyPadHandler {
 			return true;
 		}
 
+		// type a number when the key is being held
 		if (mInputMode.getWord() != null) {
 			currentWord = mInputMode.getWord();
 
