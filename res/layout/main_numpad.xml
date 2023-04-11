@@ -215,13 +215,12 @@
 				android:textSize="@dimen/soft_key_icon_size"
 				tools:ignore="HardcodedText" />
 
-			<io.github.sspanak.tt9.ui.main.SoftKey
-				android:id="@+id/soft_key_star"
+			<io.github.sspanak.tt9.ui.main.SoftPunctuationKey
+				android:id="@+id/soft_key_punctuation_1"
 				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:text="✱"
 				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 			<io.github.sspanak.tt9.ui.main.SoftNumberKey
@@ -232,13 +231,12 @@
 				android:layout_weight="1"
 				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-			<io.github.sspanak.tt9.ui.main.SoftKey
-				android:id="@+id/soft_key_pound"
+			<io.github.sspanak.tt9.ui.main.SoftPunctuationKey
+				android:id="@+id/soft_key_punctuation_2"
 				style="@android:style/Widget.Holo.Button.Borderless"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:text="#"
 				android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 			<io.github.sspanak.tt9.ui.main.SoftKey

@@ -89,8 +89,8 @@ public class SoftNumberKey extends SoftKey {
 		return sb.toString();
 	}
 
-	private SpannableStringBuilder getLabel() {
-		int number = getNumber(getId());
+	private SpannableStringBuilder getLabel(int keyId) {
+		int number = getNumber(keyId);
 		SpannableStringBuilder sb = new SpannableStringBuilder(String.valueOf(number));
 
 		if (tt9.getSettings().getInputMode() == InputMode.MODE_123) {
@@ -106,6 +106,6 @@ public class SoftNumberKey extends SoftKey {
 
 	@Override
 	public void render() {
-		setText(getLabel());
+		setText(getLabel(getId()));
 	}
 }

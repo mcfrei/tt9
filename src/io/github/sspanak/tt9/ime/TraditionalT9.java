@@ -324,14 +324,24 @@ public class TraditionalT9 extends KeyPadHandler {
 
 
 	public boolean onPound() {
-		textField.setText("#");
+		sendDownUpKeyEvents(KeyEvent.KEYCODE_POUND);
 		return true;
 	}
 
 
 	public boolean onStar() {
-		textField.setText("*");
+		sendDownUpKeyEvents(KeyEvent.KEYCODE_STAR);
 		return true;
+	}
+
+
+	public void onQuestionMark() {
+		textField.setText("?");
+	}
+
+
+	public void onExclamationMark() {
+		textField.setText("!");
 	}
 
 
