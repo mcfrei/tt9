@@ -72,4 +72,10 @@ public class SoftKey extends androidx.appcompat.widget.AppCompatButton implement
 
 		return false;
 	}
+
+	/**
+	 * render
+	 * Does extra work on the layout, to make the key look properly (if needed).
+	 */
+	public void render() {}
 }

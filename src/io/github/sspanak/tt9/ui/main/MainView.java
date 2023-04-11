@@ -32,13 +32,8 @@ public class MainView {
 		return main.getView();
 	}
 
-	public void show() {
+	public void render() {
 		main.render();
-		main.show();
-	}
-
-	public void hide() {
-		main.hide();
 	}
 
 	public void setDarkTheme(boolean darkEnabled) {

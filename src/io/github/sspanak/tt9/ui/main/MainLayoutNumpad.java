@@ -42,6 +42,9 @@ class MainLayoutNumpad extends BaseMainLayout {
 	public void render() {
 		getView();
 		enableClickHandlers();
+		for (SoftKey key : getKeys()) {
+			key.render();
+		}
 	}
 
 	@Override

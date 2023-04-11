@@ -135,7 +135,7 @@ public class TraditionalT9 extends KeyPadHandler {
 		clearSuggestions();
 		statusBar.setText(mInputMode != null ? mInputMode.toString() : "");
 		setDarkTheme();
-		mainView.show();
+		mainView.render();
 	}
 
 
@@ -173,8 +173,6 @@ public class TraditionalT9 extends KeyPadHandler {
 	protected void onStop() {
 		onFinishTyping();
 		clearSuggestions();
-
-		mainView.hide();
 	}
 
 
@@ -355,6 +353,7 @@ public class TraditionalT9 extends KeyPadHandler {
 			resetKeyRepeat();
 			clearSuggestions();
 			statusBar.setText(mInputMode.toString());
+			mainView.render();
 			forceShowWindowIfHidden();
 
 			return true;
@@ -366,6 +365,7 @@ public class TraditionalT9 extends KeyPadHandler {
 
 	public boolean onKeyNextInputMode() {
 		nextInputMode();
+		mainView.render();
 		forceShowWindowIfHidden();
 		return (mEditing != EDITING_STRICT_NUMERIC && mEditing != EDITING_DIALER);
 	}
