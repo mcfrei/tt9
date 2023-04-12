@@ -201,10 +201,10 @@ public class TraditionalT9 extends KeyPadHandler {
 
 
 	public boolean onOK() {
-		if (!textField.isThereText()) {
+		if (!isInputViewShown() && !textField.isThereText()) {
 			forceShowWindowIfHidden();
 			return true;
-		} else if (isSuggestionViewHidden() && currentInputConnection != null) {
+		} else if (isSuggestionViewHidden()) {
 			return performOKAction();
 		}
 
@@ -304,18 +304,6 @@ public class TraditionalT9 extends KeyPadHandler {
 
 		if (mInputMode.shouldSelectNextSuggestion() && !isSuggestionViewHidden()) {
 			nextSuggestion();
-			return true;
-		}
-
-		// type a number when the key is being held
-		if (mInputMode.getWord() != null) {
-			currentWord = mInputMode.getWord();
-
-			mInputMode.onAcceptSuggestion(currentWord);
-			textField.setText(currentWord);
-			clearSuggestions();
-			autoCorrectSpace(currentWord, true, key, hold, repeat > 0);
-			resetKeyRepeat();
 		} else {
 			getSuggestions();
 		}
@@ -469,9 +457,22 @@ public class TraditionalT9 extends KeyPadHandler {
 
 
 	private void handleSuggestions() {
+		// key code "suggestions" take priority over words
+		if (mInputMode.getKeyCode() > 0) {
+			sendDownUpKeyEvents(mInputMode.getKeyCode());
+			mInputMode.onAcceptSuggestion(null);
+		}
+
+		// display the list of suggestions
 		setSuggestions(mInputMode.getSuggestions());
 
-		// Put the first suggestion in the text field,
+		// flush the first suggestion immediately, if the InputMode has requested it
+		if (mInputMode.getAutoAcceptTimeout() == 0) {
+			onOK();
+			return;
+		}
+
+		// Otherwise, put the first suggestion in the text field,
 		// but cut it off to the length of the sequence (how many keys were pressed),
 		// for a more intuitive experience.
 		String word = suggestionBar.getCurrentSuggestion();
@@ -636,6 +637,10 @@ public class TraditionalT9 extends KeyPadHandler {
 
 
 	private boolean performOKAction() {
+		if (currentInputConnection == null) {
+			return false;
+		}
+
 		int action = textField.getAction();
 		switch (action) {
 			case EditorInfo.IME_ACTION_NONE:

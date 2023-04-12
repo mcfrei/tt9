@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.R;
+import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
@@ -34,15 +35,13 @@ public class SoftNumberKey extends SoftKey {
 			return false;
 		}
 
-		int number = getNumber(keyId);
-		if (number < 0) {
+		int keyCode = Key.numberToCode(getNumber(keyId));
+		if (keyCode < 0) {
 			return false;
 		}
 
-		int keyCode = KeyEvent.KEYCODE_0 + number;
-
 		tt9.onKeyDown(keyCode, new KeyEvent(KeyEvent.ACTION_DOWN, keyCode));
-		tt9.onKeyUp(keyCode, new KeyEvent(KeyEvent.ACTION_DOWN, keyCode));
+		tt9.onKeyUp(keyCode, new KeyEvent(KeyEvent.ACTION_UP, keyCode));
 
 		return true;
 	}
