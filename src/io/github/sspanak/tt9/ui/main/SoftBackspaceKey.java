@@ -34,21 +34,19 @@ public class SoftBackspaceKey extends SoftKey {
 
 	@Override
 	final public boolean onTouch(View view, MotionEvent event) {
-		super.onTouchEvent(event);
-
 		if (tt9 == null) {
 			Logger.w(getClass().getCanonicalName(), "Traditional T9 handler is not set. Ignoring key press.");
 			return false;
 		}
 
-		int action = event.getAction();
+		int action = event.getAction() & MotionEvent.ACTION_MASK;
 
 		if (action == MotionEvent.AXIS_PRESSURE) {
 			handleHold();
 		} else if (action == MotionEvent.ACTION_UP) {
 			handleUp();
 		} else if (action == MotionEvent.ACTION_DOWN) {
-			// Some phones do not report AXIS_PRESSURE when holding a key, so this is a fallback case.
+			// Fallback for phones that do not report AXIS_PRESSURE, when a key is being held
 			handlePress(-1);
 		}
 
@@ -71,7 +69,7 @@ public class SoftBackspaceKey extends SoftKey {
 	}
 
 	@Override
-	final protected boolean handlePress(int buttonId) {
+	final protected boolean handlePress(int b) {
 		return tt9.onBackspace();
 	}
 }

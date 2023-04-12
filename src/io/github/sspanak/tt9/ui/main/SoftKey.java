@@ -49,7 +49,7 @@ public class SoftKey extends androidx.appcompat.widget.AppCompatButton implement
 	public boolean onTouch(View view, MotionEvent event) {
 		super.onTouchEvent(event);
 
-		if (event.getAction() == MotionEvent.ACTION_UP) {
+		if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
 			return handlePress(view.getId());
 		}
 
