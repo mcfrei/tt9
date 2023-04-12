@@ -17,7 +17,7 @@
 	<!-- Numpad -->
 	<dimen name="numpad_padding_top">5dp</dimen>
 	<dimen name="numpad_padding_bottom">15dp</dimen>
-	<dimen name="numpad_key_height">54dp</dimen>
+	<dimen name="numpad_key_height">56dp</dimen>
 
 	<dimen name="numpad_candidate_font_size">17sp</dimen>
 	<dimen name="numpad_candidate_height">32dp</dimen>
