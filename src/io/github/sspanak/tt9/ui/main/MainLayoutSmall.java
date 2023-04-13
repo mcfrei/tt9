@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
+import io.github.sspanak.tt9.ui.main.keys.SoftKey;
 
 class MainLayoutSmall extends BaseMainLayout {
 	public MainLayoutSmall(TraditionalT9 tt9) {

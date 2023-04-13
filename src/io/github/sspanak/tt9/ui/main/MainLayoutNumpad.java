@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.ime.TraditionalT9;
+import io.github.sspanak.tt9.ui.main.keys.SoftKey;
 
 class MainLayoutNumpad extends BaseMainLayout {
 	public MainLayoutNumpad(TraditionalT9 tt9) {

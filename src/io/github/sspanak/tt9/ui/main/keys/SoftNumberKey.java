@@ -1,4 +1,4 @@
-package io.github.sspanak.tt9.ui.main;
+package io.github.sspanak.tt9.ui.main.keys;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;

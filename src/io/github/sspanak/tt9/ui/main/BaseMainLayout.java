@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import io.github.sspanak.tt9.ime.TraditionalT9;
+import io.github.sspanak.tt9.ui.main.keys.SoftKey;
 
 abstract class BaseMainLayout {
 	protected TraditionalT9 tt9;
