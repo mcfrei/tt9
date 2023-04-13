@@ -722,7 +722,8 @@ public class TraditionalT9 extends KeyPadHandler {
 	 * Generates the actual UI of TT9.
 	 */
 	protected View createSoftKeyView() {
-		mainView.createView();
+		mainView.forceCreateView();
+		initTray();
 		return mainView.getView();
 	}
 

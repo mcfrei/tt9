@@ -11,7 +11,7 @@ public class MainView {
 	public MainView(TraditionalT9 tt9) {
 		this.tt9 = tt9;
 
-		createView();
+		forceCreateView();
 	}
 
 	public boolean createView() {
@@ -26,6 +26,11 @@ public class MainView {
 		}
 
 		return false;
+	}
+
+	public void forceCreateView() {
+		main = null;
+		createView();
 	}
 
 	public View getView() {
