@@ -17,6 +17,7 @@ import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.db.DictionaryDb;
 import io.github.sspanak.tt9.ime.helpers.InputModeValidator;
 import io.github.sspanak.tt9.ime.helpers.InputType;
+import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.ime.helpers.TextField;
 import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.Language;
@@ -286,9 +287,7 @@ public class TraditionalT9 extends KeyPadHandler {
 		// Automatically accept the current word, when the next one is a space or punctuation,
 		// instead of requiring "OK" before that.
 		if (mInputMode.shouldAcceptCurrentSuggestion(key, hold, repeat > 0)) {
-			mInputMode.onAcceptSuggestion(currentWord);
-			commitCurrentSuggestion(false);
-			autoCorrectSpace(currentWord, false, key, hold, repeat > 0);
+			autoCorrectSpace(acceptIncompleteSuggestion(), false, key, hold, repeat > 0);
 			currentWord = "";
 		}
 
@@ -312,25 +311,29 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	public boolean onPound() {
-		sendDownUpKeyEvents(KeyEvent.KEYCODE_POUND);
+	public boolean onOtherKey(int keyCode) {
+		if (
+			keyCode <= 0 ||
+			(mEditing == EDITING_STRICT_NUMERIC || mEditing == EDITING_DIALER) && !Key.isNumber(keyCode)
+		) {
+			return false;
+		}
+
+		autoCorrectSpace(acceptIncompleteSuggestion(), false, -1, false, false);
+		sendDownUpKeyEvents(keyCode);
 		return true;
 	}
 
 
-	public boolean onStar() {
-		sendDownUpKeyEvents(KeyEvent.KEYCODE_STAR);
+	public boolean onText(String text) {
+		if (mEditing == EDITING_STRICT_NUMERIC || mEditing == EDITING_DIALER || text.length() == 0) {
+			return false;
+		}
+
+		autoCorrectSpace(acceptIncompleteSuggestion(), false, -1, false, false);
+		textField.setText(text);
+		autoCorrectSpace(text, false, -1, false, false);
 		return true;
-	}
-
-
-	public void onQuestionMark() {
-		textField.setText("?");
-	}
-
-
-	public void onExclamationMark() {
-		textField.setText("!");
 	}
 
 
@@ -420,6 +423,15 @@ public class TraditionalT9 extends KeyPadHandler {
 		textField.setComposingTextWithHighlightedStem(suggestionBar.getCurrentSuggestion(), mInputMode);
 
 		return true;
+	}
+
+
+	private String acceptIncompleteSuggestion() {
+		String currentWord = getComposingText();
+		mInputMode.onAcceptSuggestion(currentWord);
+		commitCurrentSuggestion(false);
+
+		return currentWord;
 	}
 
 

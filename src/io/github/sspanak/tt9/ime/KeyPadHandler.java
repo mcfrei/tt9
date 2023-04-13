@@ -237,8 +237,9 @@ abstract class KeyPadHandler extends InputMethodService {
 			case KeyEvent.KEYCODE_DPAD_DOWN: return onDown();
 			case KeyEvent.KEYCODE_DPAD_LEFT: return onLeft();
 			case KeyEvent.KEYCODE_DPAD_RIGHT: return onRight(keyRepeatCounter > 0);
-			case KeyEvent.KEYCODE_STAR: return onStar();
-			case KeyEvent.KEYCODE_POUND: return onPound();
+			case KeyEvent.KEYCODE_STAR:
+			case KeyEvent.KEYCODE_POUND:
+				return onOtherKey(keyCode);
 		}
 
 		return false;
@@ -292,8 +293,7 @@ abstract class KeyPadHandler extends InputMethodService {
 	abstract protected boolean onLeft();
 	abstract protected boolean onRight(boolean repeat);
 	abstract protected boolean onNumber(int key, boolean hold, int repeat);
-	abstract protected boolean onStar();
-	abstract protected boolean onPound();
+	abstract protected boolean onOtherKey(int keyCode);
 
 	// customized key handlers
 	abstract protected boolean onKeyAddWord();

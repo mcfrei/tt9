@@ -2,6 +2,7 @@ package io.github.sspanak.tt9.ui.main;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 
 import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.R;
@@ -27,11 +28,11 @@ public class SoftPunctuationKey extends SoftKey {
 		}
 
 		if (tt9.getSettings().getInputMode() == InputMode.MODE_123) {
-			if (keyId == R.id.soft_key_punctuation_1) tt9.onStar();
-			if (keyId == R.id.soft_key_punctuation_2) tt9.onPound();
+			if (keyId == R.id.soft_key_punctuation_1) return tt9.onOtherKey(KeyEvent.KEYCODE_STAR);
+			if (keyId == R.id.soft_key_punctuation_2) return tt9.onOtherKey(KeyEvent.KEYCODE_POUND);
 		} else {
-			if (keyId == R.id.soft_key_punctuation_1) tt9.onExclamationMark();
-			if (keyId == R.id.soft_key_punctuation_2) tt9.onQuestionMark();
+			if (keyId == R.id.soft_key_punctuation_1) return tt9.onText("!");
+			if (keyId == R.id.soft_key_punctuation_2) return tt9.onText("?");
 		}
 
 		return true;
