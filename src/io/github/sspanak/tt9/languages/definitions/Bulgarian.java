@@ -23,8 +23,8 @@ public class Bulgarian extends Language {
 			new ArrayList<>(Arrays.asList("м", "н", "о", "п")), // 5
 			new ArrayList<>(Arrays.asList("р", "с", "т", "у")), // 6
 			new ArrayList<>(Arrays.asList("ф", "х", "ц", "ч")), // 7
-			new ArrayList<>(Arrays.asList("ш", "щ", "ъ")), // 8
-			new ArrayList<>(Arrays.asList("ь", "ю", "я")) // 9
+			new ArrayList<>(Arrays.asList("ш", "щ", "ъ", "ь")), // 8
+			new ArrayList<>(Arrays.asList("ю", "я")) // 9
 		));
 	}
 }
