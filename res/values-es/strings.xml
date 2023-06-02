@@ -35,4 +35,7 @@
 	<string name="pref_upside_down_keys_summary">Habilite la configuración si hay 7–8–9 en la primera fila, en lugar de 1–2–3.</string>
 	<string name="pref_category_setup">Configuración inicial</string>
 	<string name="pref_show_soft_numpad">Teclado numérico en pantalla</string>
+    <string name="pref_number_mode">Marcador y modo de entrada de número</string>
+	<string name="char_keycodes">Keycodes</string>
+	<string name="char_suggestions">Suggestions</string>
 </resources>

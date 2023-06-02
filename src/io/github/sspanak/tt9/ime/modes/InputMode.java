@@ -42,18 +42,18 @@ abstract public class InputMode {
 			case MODE_ABC:
 				return new ModeABC(language);
 			case MODE_DIALER:
-				return new ModeDialer();
+				return new ModeDialer(settings);
 			default:
 				Logger.w("tt9/InputMode", "Defaulting to mode: " + Mode123.class.getName() + " for unknown InputMode: " + mode);
 			case MODE_123:
-				return new Mode123();
+				return new Mode123(settings);
 		}
 	}
 
 	// Key handlers. Return "true" when handling the key or "false", when is nothing to do.
 	public boolean onBackspace() { return false; }
 	abstract public boolean onNumber(int number, boolean hold, int repeat);
-	abstract public boolean onOtherKey(int key);
+	abstract public boolean onOtherKey(int key, boolean hold);
 
 	// Suggestions
 	public void onAcceptSuggestion(@NonNull String suggestion) {}

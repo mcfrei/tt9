@@ -61,4 +61,7 @@
 	<string name="pref_show_soft_numpad">Екранна цифрова клавіатура</string>
 	<string name="key_volume_up">Збільшення гучності</string>
 	<string name="key_volume_down">Зменшення гучності</string>
+    <string name="pref_number_mode">Режим введення для номерів</string>
+	<string name="char_keycodes">Keycodes</string>
+	<string name="char_suggestions">Suggestions</string>
 </resources>

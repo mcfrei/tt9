@@ -178,7 +178,7 @@ abstract class KeyPadHandler extends InputMethodService {
 			return onNumber(Key.codeToNumber(settings, keyCode), true, 0);
 		}
 
-		if (Key.isPoundOrStar(keyCode) && onOtherKey(keyCode)) {
+		if (Key.isPoundOrStar(keyCode) && onOtherKey(keyCode, true)) {
 			return true;
 		}
 
@@ -239,7 +239,7 @@ abstract class KeyPadHandler extends InputMethodService {
 			case KeyEvent.KEYCODE_DPAD_RIGHT: return onRight(keyRepeatCounter > 0);
 			case KeyEvent.KEYCODE_STAR:
 			case KeyEvent.KEYCODE_POUND:
-				if (onOtherKey(keyCode)) {
+				if (onOtherKey(keyCode, false)) {
 					return true;
 				}
 		}
@@ -289,7 +289,7 @@ abstract class KeyPadHandler extends InputMethodService {
 	abstract protected boolean onLeft();
 	abstract protected boolean onRight(boolean repeat);
 	abstract protected boolean onNumber(int key, boolean hold, int repeat);
-	abstract protected boolean onOtherKey(int keyCode);
+	abstract protected boolean onOtherKey(int keyCode, boolean hold);
 
 	// customized key handlers
 	abstract protected boolean onKeyAddWord();

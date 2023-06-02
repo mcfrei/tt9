@@ -2,6 +2,7 @@ package io.github.sspanak.tt9.preferences.screens;
 
 import io.github.sspanak.tt9.R;
 import io.github.sspanak.tt9.preferences.PreferencesActivity;
+import io.github.sspanak.tt9.preferences.items.ItemNumberMode;
 import io.github.sspanak.tt9.preferences.items.ItemSelectZeroKeyCharacter;
 
 public class KeyPadScreen extends BaseScreenFragment {
@@ -14,5 +15,6 @@ public class KeyPadScreen extends BaseScreenFragment {
 	@Override
 	protected void onCreate() {
 		(new ItemSelectZeroKeyCharacter(findPreference(ItemSelectZeroKeyCharacter.NAME), activity)).populate().activate();
+		(new ItemNumberMode(findPreference(ItemNumberMode.NAME), activity)).populate().activate();
 	}
 }

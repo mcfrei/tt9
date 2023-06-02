@@ -50,4 +50,7 @@
 	<string name="dictionary_truncate_unselected">Vider les non sélectionnés</string>
 	<string name="pref_category_setup">Configuration initiale</string>
 	<string name="pref_show_soft_numpad">Pavé numérique à l\'écran</string>
+    <string name="pref_number_mode">Numéroteur et mode de saisie du numéro</string>
+	<string name="char_keycodes">Keycodes</string>
+	<string name="char_suggestions">Suggestions</string>
 </resources>

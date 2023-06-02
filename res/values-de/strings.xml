@@ -21,4 +21,7 @@
 	<string name="char_space">Leerzeichen</string>
 	<string name="char_newline">Neue Zeile</string>
 	<string name="pref_category_setup">Ersteinrichtung</string>
+    <string name="pref_number_mode">Dialer- und Nummerneingabemodus</string>
+	<string name="char_keycodes">Keycodes</string>
+	<string name="char_suggestions">Suggestions</string>
 </resources>

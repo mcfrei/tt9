@@ -32,6 +32,18 @@ public class Key {
 			|| keyCode == KeyEvent.KEYCODE_PERIOD;
 	}
 
+	public static String decimalSeparatorToSuggestion(int keyCode) {
+		switch (keyCode) {
+			case KeyEvent.KEYCODE_COMMA:
+				return ",";
+			case KeyEvent.KEYCODE_NUMPAD_DOT:
+			case KeyEvent.KEYCODE_PERIOD:
+				return ".";
+			default:
+				return "";
+		}
+	}
+
 	public static boolean isOK(int keyCode) {
 		return
 			keyCode == KeyEvent.KEYCODE_DPAD_CENTER

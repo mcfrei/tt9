@@ -43,6 +43,13 @@
 			app:layout="@layout/pref_dropdown"
 			app:title="@string/pref_double_zero_char" />
 
+		<DropDownPreference
+			app:defaultValue="k"
+			app:iconSpaceReserved="false"
+			app:key="pref_number_mode"
+			app:layout="@layout/pref_dropdown"
+			app:title="@string/pref_number_mode" />
+
 	</PreferenceCategory>
 
 </PreferenceScreen>

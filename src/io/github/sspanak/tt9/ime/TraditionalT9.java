@@ -337,9 +337,9 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	public boolean onOtherKey(int keyCode) {
+	public boolean onOtherKey(int keyCode, boolean hold) {
 		String acceptedWord = acceptIncompleteSuggestion();
-		if (mInputMode.onOtherKey(keyCode)) {
+		if (mInputMode.onOtherKey(keyCode, hold)) {
 			autoCorrectSpace(acceptedWord, false);
 			getSuggestions();
 			resetKeyRepeat();

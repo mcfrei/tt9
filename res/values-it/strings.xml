@@ -30,5 +30,8 @@
 	<string name="pref_upside_down_keys">Invertire l\'ordine delle chiavi</string>
 	<string name="pref_upside_down_keys_summary">Abilita l\'impostazione se ci sono 7–8–9 sulla prima riga, invece di 1–2–3.</string>
 	<string name="pref_category_setup">Configurazione iniziale</string>
+    <string name="pref_number_mode">Dialer e modalità di inserimento del numero</string>
+	<string name="char_keycodes">Keycodes</string>
+	<string name="char_suggestions">Suggestions</string>
 </resources>
 

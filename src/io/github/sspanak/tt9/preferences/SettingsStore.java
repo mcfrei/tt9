@@ -15,6 +15,8 @@ import java.util.Set;
 import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.ime.modes.InputMode;
 import io.github.sspanak.tt9.languages.LanguageCollection;
+import io.github.sspanak.tt9.preferences.items.ItemNumberMode;
+import io.github.sspanak.tt9.preferences.items.ItemSelectZeroKeyCharacter;
 import io.github.sspanak.tt9.preferences.items.SectionKeymap;
 
 
@@ -211,13 +213,13 @@ public class SettingsStore {
 	public boolean getAutoSpace() { return prefs.getBoolean("auto_space", true); }
 	public boolean getAutoTextCase() { return prefs.getBoolean("auto_text_case", true); }
 	public String getDoubleZeroChar() {
-		String character = prefs.getString("pref_double_zero_char", ".");
+		String character = prefs.getString(ItemSelectZeroKeyCharacter.NAME, ".");
 
 		// SharedPreferences return a corrupted string when using the real "\n"... :(
 		return  character.equals("\\n") ? "\n" : character;
 	}
 	public boolean getUpsideDownKeys() { return prefs.getBoolean("pref_upside_down_keys", false); }
-
+	public String getNumbersMode(){return prefs.getString(ItemNumberMode.NAME, ItemNumberMode.KEYCODES);}
 
 	/************* internal settings *************/
 
