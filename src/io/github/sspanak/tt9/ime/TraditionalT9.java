@@ -311,11 +311,11 @@ public class TraditionalT9 extends KeyPadHandler {
 	}
 
 
-	public boolean onOtherKey(int keyCode) {
+	public boolean onOtherKey(int keyCode, boolean hold) {
 		cancelAutoAccept();
 
 		String acceptedWord = acceptIncompleteSuggestion();
-		if (mInputMode.onOtherKey(keyCode)) {
+		if (mInputMode.onOtherKey(keyCode, hold)) {
 			autoCorrectSpace(acceptedWord, false, keyCode);
 			getSuggestions();
 			resetKeyRepeat();

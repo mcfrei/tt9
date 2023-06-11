@@ -38,7 +38,7 @@ public class ModeABC extends InputMode {
 
 
 	@Override
-	public boolean onOtherKey(int key) {
+	public boolean onOtherKey(int key, boolean hold) {
 		reset();
 
 		if (key > 0) {

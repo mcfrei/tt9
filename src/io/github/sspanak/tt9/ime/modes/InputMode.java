@@ -53,7 +53,7 @@ abstract public class InputMode {
 	// Key handlers. Return "true" when handling the key or "false", when is nothing to do.
 	public boolean onBackspace() { return false; }
 	abstract public boolean onNumber(int number, boolean hold, int repeat);
-	abstract public boolean onOtherKey(int key);
+	abstract public boolean onOtherKey(int key, boolean hold);
 
 	// Suggestions
 	public void onAcceptSuggestion(@NonNull String word) { onAcceptSuggestion(word, false); }

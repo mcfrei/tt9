@@ -17,5 +17,5 @@ public class ModePassthrough extends InputMode {
 	@Override public boolean isPassthrough() { return true; }
 
 	public boolean onNumber(int number, boolean hold, int repeat) { return false; }
-	public boolean onOtherKey(int key) { return false; }
+	public boolean onOtherKey(int key, boolean hold) { return false; }
 }
