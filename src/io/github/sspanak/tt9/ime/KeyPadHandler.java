@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
+import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
@@ -116,7 +117,12 @@ abstract class KeyPadHandler extends InputMethodService {
 			return false;
 		}
 
-//		Logger.d("onKeyDown", "Key: " + event + " repeat?: " + event.getRepeatCount() + " long-time: " + event.isLongPress());
+		if(event.isLongPress() && Key.isPoundOrStar(keyCode)) {
+			Logger.i("tt9","onKeyDown where long press should be Key: " + event + " repeat?: " + event.getRepeatCount() + " long-time: " + event.isLongPress());
+			return onKeyLongPress(keyCode, event);
+		}
+
+		Logger.i("onKeyDown", "Key: " + event + " repeat?: " + event.getRepeatCount() + " long-time: " + event.isLongPress());
 
 		// "backspace" key must repeat its function when held down, so we handle it in a special way
 		if (Key.isBackspace(settings, keyCode)) {
@@ -149,7 +155,7 @@ abstract class KeyPadHandler extends InputMethodService {
 			return false;
 		}
 
-//		Logger.d("onLongPress", "LONG PRESS: " + keyCode);
+		Logger.i("onLongPress", "LONG PRESS: " + keyCode + " " + Key.getUnicodeChar(keyCode));
 
 		if (event.getRepeatCount() > 1) {
 			return true;
@@ -192,7 +198,7 @@ abstract class KeyPadHandler extends InputMethodService {
 			return false;
 		}
 
-		//		Logger.d("onKeyUp", "Key: " + keyCode + " repeat?: " + event.getRepeatCount());
+		Logger.i("onKeyUp", "Key: " + keyCode + " repeat?: " + event.getRepeatCount());
 
 		if (keyCode == ignoreNextKeyUp) {
 //			Logger.d("onKeyUp", "Ignored: " + keyCode);

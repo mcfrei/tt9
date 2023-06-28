@@ -2,6 +2,7 @@ package io.github.sspanak.tt9.ime.modes;
 
 import androidx.annotation.NonNull;
 
+import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.preferences.SettingsStore;
 
@@ -35,20 +36,6 @@ public class ModeABC extends InputMode {
 
 		return true;
 	}
-
-
-	@Override
-	public boolean onOtherKey(int key, boolean hold) {
-		reset();
-
-		if (key > 0) {
-			keyCode = key;
-			return true;
-		}
-
-		return false;
-	}
-
 
 	@Override
 	protected String adjustSuggestionTextCase(String word, int newTextCase) {

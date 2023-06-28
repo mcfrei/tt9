@@ -1,11 +1,14 @@
 package io.github.sspanak.tt9.ime.modes;
 
+import android.view.KeyEvent;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
 import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.ime.helpers.InputType;
+import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.ime.helpers.TextField;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.preferences.SettingsStore;
@@ -32,7 +35,6 @@ abstract public class InputMode {
 	protected int autoAcceptTimeout = -1;
 	protected Language language;
 	protected final ArrayList<String> suggestions = new ArrayList<>();
-	protected int keyCode = 0;
 
 
 	public static InputMode getInstance(SettingsStore settings, Language language, int mode) {
@@ -53,7 +55,31 @@ abstract public class InputMode {
 	// Key handlers. Return "true" when handling the key or "false", when is nothing to do.
 	public boolean onBackspace() { return false; }
 	abstract public boolean onNumber(int number, boolean hold, int repeat);
-	abstract public boolean onOtherKey(int key, boolean hold);
+
+	public boolean onOtherKey(int key, boolean hold) {
+		reset();
+
+		if (hold) {
+			if (key == KeyEvent.KEYCODE_POUND) {
+				autoAcceptTimeout = 0;
+				suggestions.add(";");
+				return true;
+			} else if (key == KeyEvent.KEYCODE_STAR) {
+				autoAcceptTimeout = 0;
+				suggestions.add("+");
+				return true;
+			}
+		}
+
+		String keyChar = Key.getUnicodeChar(key);
+		if (!keyChar.isEmpty()) {
+			autoAcceptTimeout = 0;
+			suggestions.add(keyChar);
+			return true;
+		}
+
+		return false;
+	}
 
 	// Suggestions
 	public void onAcceptSuggestion(@NonNull String word) { onAcceptSuggestion(word, false); }
@@ -90,7 +116,7 @@ abstract public class InputMode {
 	public int getAutoAcceptTimeout() {
 		return autoAcceptTimeout;
 	}
-	public int getKeyCode() { return keyCode; }
+
 	public void changeLanguage(Language newLanguage) {
 		if (newLanguage != null) {
 			language = newLanguage;
@@ -109,7 +135,6 @@ abstract public class InputMode {
 
 	public void reset() {
 		autoAcceptTimeout = -1;
-		keyCode = 0;
 		suggestions.clear();
 	}
 
@@ -149,4 +174,4 @@ abstract public class InputMode {
 	public boolean isStemFilterFuzzy() { return false; }
 	public String getWordStem() { return ""; }
 	public boolean setWordStem(String stem, boolean exact) { return false; }
-}
+	}

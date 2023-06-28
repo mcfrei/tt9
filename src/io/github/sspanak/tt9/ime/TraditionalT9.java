@@ -577,13 +577,6 @@ public class TraditionalT9 extends KeyPadHandler {
 			mInputMode.determineNextWordTextCase(textField.isThereText(), textField.getTextBeforeCursor());
 		}
 
-		// key code "suggestions" take priority over words
-		if (mInputMode.getKeyCode() > 0) {
-			sendDownUpKeyEvents(mInputMode.getKeyCode());
-			mInputMode.reset();
-			return;
-		}
-
 		// display the word suggestions
 		setSuggestions(mInputMode.getSuggestions());
 

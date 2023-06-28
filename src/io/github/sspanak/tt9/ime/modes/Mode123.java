@@ -4,6 +4,8 @@ import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
 
+import io.github.sspanak.tt9.ime.helpers.Key;
+
 public class Mode123 extends InputMode {
 
 	public int getId() {
@@ -23,27 +25,6 @@ public class Mode123 extends InputMode {
 			suggestions.add(String.valueOf(number));
 
 		return true;
-	}
-
-	@Override
-	public boolean onOtherKey(int key, boolean hold) {
-		reset();
-
-		if (hold) {
-			if (key == KeyEvent.KEYCODE_POUND) {
-				return suggestions.add(";");
-			} else if (key == KeyEvent.KEYCODE_STAR) {
-				return suggestions.add("+");
-			}
-		}
-
-		int keyChar = new KeyEvent(KeyEvent.ACTION_DOWN, key).getUnicodeChar();
-		if ((keyChar > 31 && key < 65) || (keyChar > 90 && keyChar < 97) || (keyChar > 122 && keyChar < 127)) {
-			suggestions.add(String.valueOf((char) keyChar));
-			return true;
-		}
-
-		return false;
 	}
 
 	@Override

@@ -8,15 +8,15 @@ public class Key {
 	public static boolean isBackspace(SettingsStore settings, int keyCode) {
 		return
 			keyCode == KeyEvent.KEYCODE_DEL
-			|| keyCode == KeyEvent.KEYCODE_CLEAR
-			|| keyCode == settings.getKeyBackspace();
+				|| keyCode == KeyEvent.KEYCODE_CLEAR
+				|| keyCode == settings.getKeyBackspace();
 	}
 
 
 	public static boolean isNumber(int keyCode) {
 		return
 			(keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9)
-			|| (keyCode >= KeyEvent.KEYCODE_NUMPAD_0 && keyCode <= KeyEvent.KEYCODE_NUMPAD_9);
+				|| (keyCode >= KeyEvent.KEYCODE_NUMPAD_0 && keyCode <= KeyEvent.KEYCODE_NUMPAD_9);
 	}
 
 
@@ -36,15 +36,15 @@ public class Key {
 	public static boolean isDecimalSeparator(int keyCode) {
 		return
 			keyCode == KeyEvent.KEYCODE_COMMA
-			|| keyCode == KeyEvent.KEYCODE_NUMPAD_DOT
-			|| keyCode == KeyEvent.KEYCODE_PERIOD;
+				|| keyCode == KeyEvent.KEYCODE_NUMPAD_DOT
+				|| keyCode == KeyEvent.KEYCODE_PERIOD;
 	}
 
 	public static boolean isOK(int keyCode) {
 		return
 			keyCode == KeyEvent.KEYCODE_DPAD_CENTER
-			|| keyCode == KeyEvent.KEYCODE_ENTER
-			|| keyCode == KeyEvent.KEYCODE_NUMPAD_ENTER;
+				|| keyCode == KeyEvent.KEYCODE_ENTER
+				|| keyCode == KeyEvent.KEYCODE_NUMPAD_ENTER;
 	}
 
 
@@ -91,5 +91,13 @@ public class Key {
 		} else {
 			return -1;
 		}
+	}
+
+	public static String getUnicodeChar(int key) {
+		int keyChar = new KeyEvent(KeyEvent.ACTION_DOWN, key).getUnicodeChar();
+		if ((keyChar > 31 && key < 65) || (keyChar > 90 && keyChar < 97) || (keyChar > 122 && keyChar < 127))
+			return String.valueOf((char) keyChar);
+		else
+			return "";
 	}
 }

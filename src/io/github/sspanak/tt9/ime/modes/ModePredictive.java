@@ -8,6 +8,7 @@ import io.github.sspanak.tt9.Logger;
 import io.github.sspanak.tt9.TextTools;
 import io.github.sspanak.tt9.db.DictionaryDb;
 import io.github.sspanak.tt9.ime.helpers.InputType;
+import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.ime.helpers.TextField;
 import io.github.sspanak.tt9.ime.modes.helpers.AutoSpace;
 import io.github.sspanak.tt9.ime.modes.helpers.AutoTextCase;
@@ -91,15 +92,10 @@ public class ModePredictive extends InputMode {
 
 	@Override
 	public boolean onOtherKey(int key, boolean hold) {
-		reset();
-
-		if (key > 0) {
+		boolean result = super.onOtherKey(key,hold);
+		if (key > 0)
 			disablePredictions = true;
-			keyCode = key;
-			return true;
-		}
-
-		return false;
+		return result;
 	}
 
 
